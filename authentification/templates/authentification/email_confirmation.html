@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    email confirmation
+{% endblock title %}
+{% autoescape off %}
+    
+    {% block content %}
+    <h1>email confirmation</h1>
+    Hello {{ user.username }}, welcome to edumath224
+
+    Please confirm your email address by clicking on the link below:
+    link http://{{ domain }}{% url 'authentification:activate' uidb64=uid token=token %}
+
+    {% endblock content %}
+{% endautoescape %}

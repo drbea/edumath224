@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Deconnexion
+{% endblock title %}
+
+{% block content %}
+    <h1>Deconnexion</h1>
+    <p>Vous avez bien ete deconnecté</p>
+    <a class="btn btn-primary btn-lg " href="{% url 'authentification:login' %}">Se connecter</a>
+{% endblock content %}

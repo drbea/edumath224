@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Accueil
+{% endblock title %}
+    
+
+{% block content %}
+    <h1>Accueil</h1>
+
+    
+
+
+    
+    {% if user.is_authenticated %}
+        <h4>Bonjour {{ user.username }}</h4>
+        <h4>mail {{ user.email }}</h4>
+        <a class="btn btn-primary btn-lg " href="{% url 'authentification:logout' %}">Se deconnecter</a>
+    {% else %}
+        <h4>Bonjour anonyme</h4>
+        <a class="btn btn-primary btn-lg " href="{% url 'authentification:login' %}">Se connecter</a>
+        <a class="btn btn-primary btn-lg " href="{% url 'authentification:register' %}">S'enregistrer</a>
+    {% endif %}
+        
+
+
+    
+{% endblock content %}
+    
