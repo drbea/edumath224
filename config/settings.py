@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'home',
     'authentification',
     'rest_framework',
+    'api',
 
     # 'crispy_forms',
     # 'crispy_bootstrap4',
@@ -71,6 +72,32 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+ 'http://localhost:3000',  # Adresse du frontend React
+]
+
+# Si vous avez besoin d'autoriser les cookies partagés entre les domaines
+CORS_ALLOW_CREDENTIALS = True
+
+# Si vous avez besoin d'autoriser des en-têtes spécifiques
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -149,6 +176,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = [ BASE_DIR / "staticfiles" ]
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
