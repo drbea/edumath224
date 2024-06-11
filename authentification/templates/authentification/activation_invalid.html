@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    acti failed
+    Activation Failed
 {% endblock title %}
 
-
-{% autoescape off %}
-    {% block content %}
-        activation failed, Please try again
-    {% endblock content %}
-{% endautoescape %}
+{% block content %}
+    <div class="alert alert-danger">
+        Activation failed, please try again.
+    </div>
+{% endblock content %}

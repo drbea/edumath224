@@ -1,7 +1,8 @@
-// LoginComponent.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect, Navigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';   // Importez useAuth pour accéder au contexte
+
 
 function LoginComponent() {
     const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ function LoginComponent() {
     });
 
     const [redirect, setRedirect] = useState(false);
+
+    const { login } = useAuth(); // Utilisez login pour mettre à jour le contexte
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,6 +23,7 @@ function LoginComponent() {
         axios.post('http://localhost:8000/api/login/', formData)
             .then(response => {
                 console.log(response.data);
+                login(response.data.username); // Mettre à jour le contexte avec le nom d'utilisateur
                 // Rediriger l'utilisateur vers une autre page après la connexion réussie
                 setRedirect(true);
             })

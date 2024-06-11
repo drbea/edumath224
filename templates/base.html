@@ -33,12 +33,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authentification:login' %}">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'authentification:register' %}">Inscription</a>
-                    </li>
+                   
+                        
+                    {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'authentification:login' %}">Connexion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'authentification:register' %}">Inscription</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                           <a class="nav-link"> user: <strong>@{{user.username| capfirst}}</strong> </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    email confirmation
+    Email Confirmation
 {% endblock title %}
-{% autoescape off %}
-    
-    {% block content %}
-    <h1>email confirmation</h1>
-    Hello {{ user.username }}, welcome to edumath224
 
-    Please confirm your email address by clicking on the link below:
-    link http://{{ domain }}{% url 'authentification:activate' uidb64=uid token=token %}
-
-    {% endblock content %}
-{% endautoescape %}
+{% block content %}
+    <h1>Email Confirmation</h1>
+    <p>Hello {{ name }}, welcome to edumath224</p>
+    <p>
+        Please confirm your email address by clicking on the link below:
+    </p>
+    <p>
+        <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">
+            Activate your account
+        </a>
+    </p>
+{% endblock content %}

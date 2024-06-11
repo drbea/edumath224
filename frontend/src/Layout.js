@@ -3,9 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';  // Assurez-vous d'avoir un fichier CSS personnalisé
-// import HelloWorld from './helloWorld';
+import { useAuth } from './components/AuthContext';    // Importez useAuth pour accéder au contexte
+
 
 function Layout({ children }) {
+    const { user, logout } = useAuth();   // Utilisez user pour obtenir les informations de l'utilisateur
     return (
         <div>
             <header>
@@ -29,12 +31,28 @@ function Layout({ children }) {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/contact">Contact</Link>
                             </li>
+
+                            {user ? (
+                        <>
+                            <li className="nav-item">
+                                <span className="nav-link">Bonjour, {user.username}</span>
+                            </li>
+                            <li className="nav-item">
+                                <button className="nav-link btn" onClick={logout}>Déconnexion</button>
+                            </li>
+                        </>
+                    ) : (
+                        <>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/login">Connexion</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/register">Inscription</Link>
                             </li>
+                        </>
+                    )}
+
+
                         </ul>
                     </div>
                 </nav>
